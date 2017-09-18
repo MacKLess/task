@@ -3,7 +3,7 @@ class Task
 
   def initialize(attributes)
     @description = attributes.fetch(:description)
-    @list_id = attributes.festch(:list_id)
+    @list_id = attributes.fetch(:list_id)
   end
 
   def self.all
@@ -22,6 +22,6 @@ class Task
   end
 
   def ==(another_task)
-    self.description().==(another_task.description()).& (self.list_id().==(another_task.let_id()))
+    self.description().==(another_task.description()).& (self.list_id().==(another_task.list_id()))
   end
 end
