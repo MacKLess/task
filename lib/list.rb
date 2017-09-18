@@ -25,4 +25,16 @@ class List
   def ==(another_list)
     self.name().==(another_list.name()).&(self.id().==(another_list.id()))
   end
+
+  def tasks
+    puts "SELECT * FROM tasks WHERE list_id = #{@id};"
+    returned_tasks = DB.exec("SELECT * FROM tasks WHERE list_id = #{@id} ORDER BY due_date;")
+    tasks = []
+    returned_tasks.each do |task|
+      description = task.fetch("description")
+      due_date = task.fetch("due_date")[0...10]
+      tasks.push(Task.new({:description => description, :list_id => @id, :due_date => due_date}))
+    end
+    tasks
+  end
 end
