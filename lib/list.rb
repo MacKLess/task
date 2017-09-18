@@ -17,6 +17,16 @@ class List
     lists
   end
 
+  def self.find(id)
+    found_list = nil
+    List.all.each do |list|
+      if list.id == id
+        found_list = list
+      end
+    end
+    found_list
+  end
+  
   def save
     result = DB.exec("INSERT INTO lists (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
