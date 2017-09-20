@@ -59,4 +59,12 @@ post('/tasks') do
   @task = Task.new({:description => description, :list_id => list_id, :due_date => due_date})
   @task.save
   erb(:task_success)
+
+  delete('/lists/:id') do
+    @list = List.find(params.fetch('id').to_i)
+    @list.delete
+    @lists = List.all
+    erb(:index)
+  end
+
 end
