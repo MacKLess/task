@@ -36,3 +36,7 @@
   <button type="button" class="btn"><a href="/lists">View All Lists</a></button>
   <button type="button" class="btn"><a href="/lists/new">Add New List</a></button>
 </div>
+
+<h3>Edit your list:</h3>
+<p><a href="/lists/<%= @list.id() %>/edit">Edit<%= @list.name() %> list</a></p>
+<p><a href="/">Return to Main Page</a></p>

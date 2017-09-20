@@ -26,7 +26,7 @@ class List
     end
     found_list
   end
-  
+
   def save
     result = DB.exec("INSERT INTO lists (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch('id').to_i()
@@ -47,4 +47,11 @@ class List
     end
     tasks
   end
+
+  def update(attributes)
+    @name = attributes.fetch(:name)
+    @id = self.id
+    DB.exec("UPDATE lists SET name = '#{@name}' WHERE id = #{@id};")
+  end  
+
 end
